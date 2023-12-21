@@ -1,0 +1,169 @@
+<html>
+<head>
+<title>grafiki.ipynb</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #7a7e85;}
+.s1 { color: #bcbec4;}
+.s2 { color: #cf8e6d;}
+.s3 { color: #bcbec4;}
+.s4 { color: #6aab73;}
+.s5 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+grafiki.ipynb</font>
+</center></td></tr></table>
+<pre><span class="s0">#%% md 
+</span><span class="s1">Цель: визуализировать данные из датасета в виде графиков. А именно: построить с помощью библиотек matplotlib и pandas линейные графики (минимум три штуки), столбчатые диаграммы (минимум три штуки), круговые диаграммы (минимум две штуки), диаграммы рассеяния (минимум две штуки), гистограммы (минимум три штуки). Датасет из прошлой практической был заменён, так как там почти не было числовых данных (заменён с вашим разрешением). 
+ 
+</span><span class="s0">#%% 
+</span><span class="s2">import </span><span class="s1">pandas </span><span class="s2">as </span><span class="s1">pn</span>
+<span class="s2">import </span><span class="s1">numpy </span><span class="s2">as </span><span class="s1">np</span>
+<span class="s2">import </span><span class="s1">matplotlib</span><span class="s3">.</span><span class="s1">pyplot </span><span class="s2">as </span><span class="s1">plt</span>
+
+<span class="s1">steam </span><span class="s3">= </span><span class="s1">pn</span><span class="s3">.</span><span class="s1">read_csv</span><span class="s3">(</span><span class="s4">'game_data_all.csv'</span><span class="s3">)</span>
+<span class="s1">steam</span>
+<span class="s0">#%% 
+</span><span class="s1">plt</span><span class="s3">.</span><span class="s1">figure</span><span class="s3">(</span><span class="s1">figsize</span><span class="s3">=(</span><span class="s5">25</span><span class="s3">,</span><span class="s5">5</span><span class="s3">))</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">plot</span><span class="s3">(</span><span class="s1">steam</span><span class="s3">[</span><span class="s4">'game'</span><span class="s3">].</span><span class="s1">head</span><span class="s3">(</span><span class="s5">10</span><span class="s3">),</span><span class="s1">steam</span><span class="s3">[</span><span class="s4">'peak_players'</span><span class="s3">].</span><span class="s1">head</span><span class="s3">(</span><span class="s5">10</span><span class="s3">),</span><span class="s1">label </span><span class="s3">= </span><span class="s4">'Пиковое число игроков'</span><span class="s3">,</span><span class="s1">color </span><span class="s3">= </span><span class="s4">'yellow'</span><span class="s3">, </span><span class="s1">marker </span><span class="s3">= </span><span class="s4">'o'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">title</span><span class="s3">(</span><span class="s4">'Статистика пикового значения игроков'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">xlabel</span><span class="s3">(</span><span class="s4">'Название игры'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">ylabel</span><span class="s3">(</span><span class="s4">'Число пикового значения игроков'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">grid</span><span class="s3">()</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">legend</span><span class="s3">()</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">show</span><span class="s3">()</span>
+<span class="s0">#%% md 
+</span><span class="s1">Линейный график статистики пикового значения игроков. Было взято 10 игр из датасета. Можно сделать вывод, что из всех 10 игр наибольшее количество игроков было в Resident Evil 4. 
+График строился с помощью библиотеки matplotlib.pyplot. steam['game'].head(10) и steam['peak_players'].head(10) берёт первые 10 значений из начала датасета. Label задает название 
+величины для легенды. Color это цвет графика, marker это точки на графике. plt.xlabel и plt.ylabel это названия осей x и y. plt.legend показывает легенду графика. plt.show показывает сам график. plt.title показывает название графика. plt.figure используется для создания фигуры, plt.grid используется для показа сетки. 
+</span><span class="s0">#%% 
+</span><span class="s1">plt</span><span class="s3">.</span><span class="s1">figure</span><span class="s3">(</span><span class="s1">figsize</span><span class="s3">=(</span><span class="s5">25</span><span class="s3">,</span><span class="s5">5</span><span class="s3">))</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">plot</span><span class="s3">(</span><span class="s1">steam</span><span class="s3">[</span><span class="s4">'game'</span><span class="s3">].</span><span class="s1">head</span><span class="s3">(</span><span class="s5">10</span><span class="s3">),</span><span class="s1">steam</span><span class="s3">[</span><span class="s4">'total_reviews'</span><span class="s3">].</span><span class="s1">head</span><span class="s3">(</span><span class="s5">10</span><span class="s3">),</span><span class="s1">label </span><span class="s3">= </span><span class="s4">'Все отзывы'</span><span class="s3">,</span><span class="s1">color </span><span class="s3">= </span><span class="s4">'red'</span><span class="s3">, </span><span class="s1">marker </span><span class="s3">= </span><span class="s4">'o'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">plot</span><span class="s3">(</span><span class="s1">steam</span><span class="s3">[</span><span class="s4">'game'</span><span class="s3">].</span><span class="s1">head</span><span class="s3">(</span><span class="s5">10</span><span class="s3">),</span><span class="s1">steam</span><span class="s3">[</span><span class="s4">'positive_reviews'</span><span class="s3">].</span><span class="s1">head</span><span class="s3">(</span><span class="s5">10</span><span class="s3">),</span><span class="s1">label </span><span class="s3">= </span><span class="s4">'Положительные отзывы'</span><span class="s3">,</span><span class="s1">color </span><span class="s3">= </span><span class="s4">'blue'</span><span class="s3">, </span><span class="s1">marker </span><span class="s3">= </span><span class="s4">'o'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">title</span><span class="s3">(</span><span class="s4">'Статистика всех отзывов и положительных отзывов'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">xlabel</span><span class="s3">(</span><span class="s4">'Название игры'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">ylabel</span><span class="s3">(</span><span class="s4">'Отзывы'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">grid</span><span class="s3">()</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">legend</span><span class="s3">()</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">show</span><span class="s3">()</span>
+<span class="s0">#%% md 
+</span><span class="s1">Линейный график статистики всех отзывов и позитивных отзывов. Было взято также 10 игр из начала датасета и соотношения всех отзывов к игре и позитивных отзывов к игре. Можно сделать вывод, что количество положительных отзывов почти совпадает с количеством всех отзывов, из чего делаем вывод, что негативных отзывов к этим играм мало. Было построено два графика с помощью plt.plot и данных внутри, color это цвет графика, marker это точки на графике, plt.grid используется для показа сетки. 
+</span><span class="s0">#%% 
+</span><span class="s1">plt</span><span class="s3">.</span><span class="s1">figure</span><span class="s3">(</span><span class="s1">figsize</span><span class="s3">=(</span><span class="s5">25</span><span class="s3">,</span><span class="s5">5</span><span class="s3">))</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">plot</span><span class="s3">(</span><span class="s1">steam</span><span class="s3">[</span><span class="s4">'game'</span><span class="s3">].</span><span class="s1">head</span><span class="s3">(</span><span class="s5">10</span><span class="s3">),</span><span class="s1">steam</span><span class="s3">[</span><span class="s4">'total_reviews'</span><span class="s3">].</span><span class="s1">head</span><span class="s3">(</span><span class="s5">10</span><span class="s3">),</span><span class="s1">label </span><span class="s3">= </span><span class="s4">'Все отзывы'</span><span class="s3">,</span><span class="s1">color </span><span class="s3">= </span><span class="s4">'red'</span><span class="s3">, </span><span class="s1">marker </span><span class="s3">= </span><span class="s4">'o'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">plot</span><span class="s3">(</span><span class="s1">steam</span><span class="s3">[</span><span class="s4">'game'</span><span class="s3">].</span><span class="s1">head</span><span class="s3">(</span><span class="s5">10</span><span class="s3">),</span><span class="s1">steam</span><span class="s3">[</span><span class="s4">'negative_reviews'</span><span class="s3">].</span><span class="s1">head</span><span class="s3">(</span><span class="s5">10</span><span class="s3">),</span><span class="s1">label </span><span class="s3">= </span><span class="s4">'Негативные отзывы'</span><span class="s3">,</span><span class="s1">color </span><span class="s3">= </span><span class="s4">'blue'</span><span class="s3">, </span><span class="s1">marker </span><span class="s3">= </span><span class="s4">'o'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">title</span><span class="s3">(</span><span class="s4">'Статистика всех отзывов и негативных отзывов'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">xlabel</span><span class="s3">(</span><span class="s4">'Название игры'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">ylabel</span><span class="s3">(</span><span class="s4">'Отзывы'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">grid</span><span class="s3">()</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">legend</span><span class="s3">()</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">show</span><span class="s3">()</span>
+<span class="s0">#%% md 
+</span><span class="s1">Линейный график статистики всех отзывов и негативных отзывов. Было взято также 10 игр из начала датасета и соотношения всех отзывов к игре и негативных отзывов к игре. Можно сделать вывод, что количество негативных отзывов по сравнению со всеми отзывами очень мало, следовательно позитивных отзывов больше. Было построено два графика с помощью plt.plot и данных внутри, color это цвет графика, marker это точки на графике, plt.grid используется для показа сетки. 
+</span><span class="s0">#%% 
+</span><span class="s1">plt</span><span class="s3">.</span><span class="s1">figure</span><span class="s3">(</span><span class="s1">figsize</span><span class="s3">=(</span><span class="s5">27</span><span class="s3">,</span><span class="s5">5</span><span class="s3">))</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">bar</span><span class="s3">(</span><span class="s1">steam</span><span class="s3">[</span><span class="s4">'game'</span><span class="s3">].</span><span class="s1">head</span><span class="s3">(</span><span class="s5">10</span><span class="s3">),</span><span class="s1">steam</span><span class="s3">[</span><span class="s4">'all_time_peak'</span><span class="s3">].</span><span class="s1">head</span><span class="s3">(</span><span class="s5">10</span><span class="s3">),</span><span class="s1">label </span><span class="s3">= </span><span class="s4">'Самое пиковое значение играющих за всё время'</span><span class="s3">,</span><span class="s1">color </span><span class="s3">= </span><span class="s4">'orange'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">xlabel</span><span class="s3">(</span><span class="s4">'Название игры'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">ylabel</span><span class="s3">(</span><span class="s4">'Пиковое значение играющих за всё время'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">title</span><span class="s3">(</span><span class="s4">'Статистика пикового значения играющих за всё время'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">legend</span><span class="s3">()</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">show</span><span class="s3">()</span>
+<span class="s0">#%% md 
+</span><span class="s1">Столбчатая диаграмма самого пикового значения играющих за всё время. Было взято также 10 игр из начала датасета и значение всего пикового количества играющих за всё время. Можно сделать вывод, что наиболее часто запускаемая игра была Resident Evil 4. Столбчатая диаграмма была построена с помощью plt.bar. Метод создания похож на создание линейного графика, но только без маркера. 
+</span><span class="s0">#%% 
+</span><span class="s1">plt</span><span class="s3">.</span><span class="s1">figure</span><span class="s3">(</span><span class="s1">figsize</span><span class="s3">=(</span><span class="s5">35</span><span class="s3">,</span><span class="s5">5</span><span class="s3">))</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">bar</span><span class="s3">(</span><span class="s1">steam</span><span class="s3">[</span><span class="s4">'game'</span><span class="s3">].</span><span class="s1">head</span><span class="s3">(</span><span class="s5">12</span><span class="s3">),</span><span class="s1">steam</span><span class="s3">[</span><span class="s4">'rating'</span><span class="s3">].</span><span class="s1">head</span><span class="s3">(</span><span class="s5">12</span><span class="s3">),</span><span class="s1">label </span><span class="s3">= </span><span class="s4">'Рейтинг'</span><span class="s3">,</span><span class="s1">color </span><span class="s3">= </span><span class="s4">'orange'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">xlabel</span><span class="s3">(</span><span class="s4">'Название игры'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">ylabel</span><span class="s3">(</span><span class="s4">'Значение рейтинга'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">title</span><span class="s3">(</span><span class="s4">'Статистика рейтинга игр'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">legend</span><span class="s3">()</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">show</span><span class="s3">()</span>
+<span class="s0">#%% md 
+</span><span class="s1">Столбчатая диаграмма статистики рейтинга. Было взято 12 игр и рейтинг. Можно сделать вывод, что у этих игр достаточно большой рейтинг и они почти равны. Столбчатая диаграмма была построена с помощью plt.bar. Метод создания похож на создание линейного графика, но только без маркера. 
+</span><span class="s0">#%% 
+</span><span class="s1">plt</span><span class="s3">.</span><span class="s1">figure</span><span class="s3">(</span><span class="s1">figsize</span><span class="s3">=(</span><span class="s5">35</span><span class="s3">,</span><span class="s5">5</span><span class="s3">))</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">bar</span><span class="s3">(</span><span class="s1">steam</span><span class="s3">[</span><span class="s4">'game'</span><span class="s3">].</span><span class="s1">head</span><span class="s3">(</span><span class="s5">12</span><span class="s3">),</span><span class="s1">steam</span><span class="s3">[</span><span class="s4">'total_reviews'</span><span class="s3">].</span><span class="s1">head</span><span class="s3">(</span><span class="s5">12</span><span class="s3">),</span><span class="s1">label </span><span class="s3">= </span><span class="s4">'Все отзывы'</span><span class="s3">,</span><span class="s1">color </span><span class="s3">= </span><span class="s4">'orange'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">bar</span><span class="s3">(</span><span class="s1">steam</span><span class="s3">[</span><span class="s4">'game'</span><span class="s3">].</span><span class="s1">head</span><span class="s3">(</span><span class="s5">12</span><span class="s3">),</span><span class="s1">steam</span><span class="s3">[</span><span class="s4">'positive_reviews'</span><span class="s3">].</span><span class="s1">head</span><span class="s3">(</span><span class="s5">12</span><span class="s3">),</span><span class="s1">label </span><span class="s3">= </span><span class="s4">'Положительные отзывы'</span><span class="s3">,</span><span class="s1">color </span><span class="s3">= </span><span class="s4">'blue'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">xlabel</span><span class="s3">(</span><span class="s4">'Название игры'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">ylabel</span><span class="s3">(</span><span class="s4">'Отзывы'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">title</span><span class="s3">(</span><span class="s4">'Соотношение всех отзывов и положительных отзывов'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">legend</span><span class="s3">()</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">show</span><span class="s3">()</span>
+<span class="s0">#%% md 
+</span><span class="s1">Столбчатая диаграмма соотношения положительных отзывов и всех отзывов. В выводе можно сказать, что количество положительных отзывов почти совпадает с количеством всех отзывов. 
+</span><span class="s0">#%% 
+</span><span class="s1">genres_count </span><span class="s3">= </span><span class="s1">steam</span><span class="s3">[</span><span class="s4">'primary_genre'</span><span class="s3">].</span><span class="s1">value_counts</span><span class="s3">().</span><span class="s1">head</span><span class="s3">(</span><span class="s5">10</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">figure</span><span class="s3">(</span><span class="s1">figsize</span><span class="s3">=(</span><span class="s5">15</span><span class="s3">, </span><span class="s5">8</span><span class="s3">))</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">pie</span><span class="s3">(</span><span class="s1">genres_count</span><span class="s3">, </span><span class="s1">labels</span><span class="s3">=</span><span class="s1">genres_count</span><span class="s3">.</span><span class="s1">index</span><span class="s3">, </span><span class="s1">autopct</span><span class="s3">=</span><span class="s4">'%1.1f%%'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">title</span><span class="s3">(</span><span class="s4">'Топ 10 игровых жанров в стиме'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">show</span><span class="s3">()</span>
+<span class="s0">#%% md 
+</span><span class="s1">Круговая диаграмма показывает распределение топ-10 жанров игр в стиме. Каждый сектор представляет собой определенный жанр, а процент внутри сектора указывает на долю этого жанра от общего числа игр. Можно сделать вывод, что наиболее популярным жанром является Indie, так как у него самый большой процент. Строится с помощью plt.pie. 
+</span><span class="s0">#%% 
+</span><span class="s1">top_developers </span><span class="s3">= </span><span class="s1">steam</span><span class="s3">[</span><span class="s4">'developer'</span><span class="s3">].</span><span class="s1">value_counts</span><span class="s3">().</span><span class="s1">head</span><span class="s3">(</span><span class="s5">10</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">figure</span><span class="s3">(</span><span class="s1">figsize</span><span class="s3">=(</span><span class="s5">10</span><span class="s3">, </span><span class="s5">5</span><span class="s3">))</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">pie</span><span class="s3">(</span><span class="s1">top_developers</span><span class="s3">, </span><span class="s1">labels</span><span class="s3">=</span><span class="s1">top_developers</span><span class="s3">.</span><span class="s1">index</span><span class="s3">, </span><span class="s1">autopct</span><span class="s3">=</span><span class="s4">'%1.1f%%'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">title</span><span class="s3">(</span><span class="s4">'Топ разработчиков в стиме'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">show</span><span class="s3">()</span>
+
+<span class="s0">#%% md 
+</span><span class="s1">Круговая диаграмма показывает соотношение топовых разработчиков на платформе Steam. Каждый сектор представляет собой одного из топовых разработчиков, а процент внутри сектора указывает на их долю от общего числа игр. Можем сделать вывод, что наиболее популярным разработчиком является Choice of Games, так как у него самый большой процент. Строится с помощью plt.pie. 
+</span><span class="s0">#%% 
+</span><span class="s1">plt</span><span class="s3">.</span><span class="s1">figure</span><span class="s3">(</span><span class="s1">figsize</span><span class="s3">=(</span><span class="s5">5</span><span class="s3">, </span><span class="s5">3</span><span class="s3">))</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">scatter</span><span class="s3">(</span><span class="s1">steam</span><span class="s3">[</span><span class="s4">'positive_reviews'</span><span class="s3">], </span><span class="s1">steam</span><span class="s3">[</span><span class="s4">'negative_reviews'</span><span class="s3">], </span><span class="s1">alpha</span><span class="s3">=</span><span class="s5">0.5</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">title</span><span class="s3">(</span><span class="s4">'Диаграмма рассеивания: Положительные и Отрицательные отзывы'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">xlabel</span><span class="s3">(</span><span class="s4">'Положительные отзывы'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">ylabel</span><span class="s3">(</span><span class="s4">'Отрицательные отзывы'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">show</span><span class="s3">()</span>
+<span class="s0">#%% md 
+</span><span class="s1">Диаграмма рассеивания положительных и отрицательных отзывов. Можно сделать вывод, что отзывы независимы между собой. Диграмма была построена с помощью plt.scatter. 
+</span><span class="s0">#%% 
+</span><span class="s1">plt</span><span class="s3">.</span><span class="s1">figure</span><span class="s3">(</span><span class="s1">figsize</span><span class="s3">=(</span><span class="s5">5</span><span class="s3">, </span><span class="s5">4</span><span class="s3">))</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">scatter</span><span class="s3">(</span><span class="s1">steam</span><span class="s3">[</span><span class="s4">'peak_players'</span><span class="s3">], </span><span class="s1">steam</span><span class="s3">[</span><span class="s4">'positive_reviews'</span><span class="s3">], </span><span class="s1">alpha</span><span class="s3">=</span><span class="s5">0.5</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">title</span><span class="s3">(</span><span class="s4">'Диаграмма рассеивания между пиковым количеством игроков и положительными отзывами'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">xlabel</span><span class="s3">(</span><span class="s4">'Пиковое количество игроков'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">ylabel</span><span class="s3">(</span><span class="s4">'Количество положительных отзывов'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">show</span><span class="s3">()</span>
+<span class="s0">#%% md 
+</span><span class="s1">Диаграмма рассеивания положительных и отрицательных отзывов. Можно сделать вывод, что явной зависимости между пиковым количеством игроков и положительными отзывами нет. Диграмма была построена с помощью plt.scatter. 
+ 
+</span><span class="s0">#%% 
+</span><span class="s1">genres_counts </span><span class="s3">= </span><span class="s1">steam</span><span class="s3">[</span><span class="s4">'primary_genre'</span><span class="s3">].</span><span class="s1">value_counts</span><span class="s3">()</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">figure</span><span class="s3">(</span><span class="s1">figsize</span><span class="s3">=(</span><span class="s5">6</span><span class="s3">, </span><span class="s5">3</span><span class="s3">))</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">hist</span><span class="s3">(</span><span class="s1">genres_counts</span><span class="s3">, </span><span class="s1">bins</span><span class="s3">=</span><span class="s5">10</span><span class="s3">, </span><span class="s1">color</span><span class="s3">=</span><span class="s4">'blue'</span><span class="s3">, </span><span class="s1">edgecolor</span><span class="s3">=</span><span class="s4">'black'</span><span class="s3">, </span><span class="s1">label </span><span class="s3">= </span><span class="s4">'Распределение жанров'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">title</span><span class="s3">(</span><span class="s4">'Гистограмма частоты жанров'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">xlabel</span><span class="s3">(</span><span class="s4">'Жанр'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">ylabel</span><span class="s3">(</span><span class="s4">'Частота'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">legend</span><span class="s3">()</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">show</span><span class="s3">()</span>
+<span class="s0">#%% md 
+</span><span class="s1">Гистограмма была построена с помощью plt.hist из 10 ячеек. Можно сделать вывод, что один из жанров очень преобладает, другие же менеет преобладающие. 
+</span><span class="s0">#%% 
+</span><span class="s1">plt</span><span class="s3">.</span><span class="s1">figure</span><span class="s3">(</span><span class="s1">figsize</span><span class="s3">=(</span><span class="s5">10</span><span class="s3">, </span><span class="s5">6</span><span class="s3">))</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">hist</span><span class="s3">(</span><span class="s1">steam</span><span class="s3">[</span><span class="s4">'rating'</span><span class="s3">], </span><span class="s1">bins</span><span class="s3">=</span><span class="s5">20</span><span class="s3">, </span><span class="s1">color</span><span class="s3">=</span><span class="s4">'blue'</span><span class="s3">, </span><span class="s1">edgecolor</span><span class="s3">=</span><span class="s4">'black'</span><span class="s3">,</span><span class="s1">label </span><span class="s3">= </span><span class="s4">'Распределение рейтинга'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">title</span><span class="s3">(</span><span class="s4">'Гистограмма рейтинга'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">xlabel</span><span class="s3">(</span><span class="s4">'Рейтинг'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">ylabel</span><span class="s3">(</span><span class="s4">'Частота'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">legend</span><span class="s3">()</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">show</span><span class="s3">()</span>
+<span class="s0">#%% md 
+</span><span class="s1">Гистограмма была построена с помощью plt.hist, было взято 20 ячеек. Можно сделать вывод, что самый часто встречающийся рейтинг находится между 60 и 80, то есть около 70. 
+</span><span class="s0">#%% 
+</span><span class="s1">plt</span><span class="s3">.</span><span class="s1">figure</span><span class="s3">(</span><span class="s1">figsize</span><span class="s3">=(</span><span class="s5">10</span><span class="s3">, </span><span class="s5">6</span><span class="s3">))</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">hist</span><span class="s3">(</span><span class="s1">steam</span><span class="s3">[</span><span class="s4">'review_percentage'</span><span class="s3">], </span><span class="s1">bins</span><span class="s3">=</span><span class="s5">20</span><span class="s3">, </span><span class="s1">color</span><span class="s3">=</span><span class="s4">'blue'</span><span class="s3">, </span><span class="s1">edgecolor</span><span class="s3">=</span><span class="s4">'black'</span><span class="s3">, </span><span class="s1">label </span><span class="s3">= </span><span class="s4">'Процент отзывов'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">title</span><span class="s3">(</span><span class="s4">'Гистограмма соотношения отзывов'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">xlabel</span><span class="s3">(</span><span class="s4">'Процент отзывов'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">ylabel</span><span class="s3">(</span><span class="s4">'Частота'</span><span class="s3">)</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">legend</span><span class="s3">()</span>
+<span class="s1">plt</span><span class="s3">.</span><span class="s1">show</span><span class="s3">()</span>
+<span class="s0">#%% md 
+</span><span class="s1">Гистограмма была построена с помощью plt.hist, было взято 20 ячеек. Можно сделать вывод, что самый часто встречающийся процент положительных отзывов находится между 80 и 100, то есть около 90 и он встречается чаще всего. 
+ 
+</span><span class="s0">#%% md 
+</span><span class="s1">Вывод: в ходе работы были визуализированы данные из датасета в виде графиков. А именно: были построены с помощью библиотек matplotlib и pandas линейные графики (минимум три штуки), столбчатые диаграммы (минимум три штуки), круговые диаграммы (минимум две штуки), диаграммы рассеяния (минимум две штуки), гистограммы (минимум три штуки). Визуализация проводилась на новом датасете, а датасет из прошлой практической был заменён, так как там почти не было числовых данных (заменён с вашим разрешением).</span></pre>
+</body>
+</html>
